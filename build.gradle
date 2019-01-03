@@ -32,6 +32,7 @@ dependencies {
 	runtimeOnly('com.h2database:h2')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'org.mockito', name: 'mockito-core', version: '2.23.4'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
 
 }

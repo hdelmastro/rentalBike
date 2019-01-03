@@ -1,7 +1,5 @@
 package ar.com.intivefdv.rentalBike.domain;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 /**
  * @author hdelmastro <hector.delmastro@xcaleconsulting.com>
  * Created 26/12/2018 11:40

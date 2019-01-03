@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.math.BigInteger;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
+@ActiveProfiles("test")
 public class RentalServiceTest {
 
     private static BigDecimal PRICE_BY_HOUR = BigDecimal.valueOf(5);
@@ -93,15 +95,4 @@ public class RentalServiceTest {
 
     }
 
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void wrongBooking() {
-        Rental rental = Mockito.mock(Rental.class);
-        Mockito.when(rental.getNumberOfBikes()).thenReturn(0);
-        Mockito.when(rental.getType()).thenReturn(RentalType.BY_HOUR);
-        Mockito.when(bookingConfirm.getRental()).thenReturn(rental);
-        BookingResponse response = target.booking(bookingConfirm);
-        Assert.assertNotNull(response);
-        BigDecimal expected =  BigDecimal.valueOf(FAMILY_NUMBER).multiply(PRICE_BY_HOUR).multiply(BigDecimal.valueOf(0.7));
-        Assert.assertEquals(expected, response.getTotalPrice());
-    }
 }
